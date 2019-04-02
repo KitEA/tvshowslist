@@ -23,24 +23,18 @@ class App extends Component {
     });
   }
 
-  fetchPosterForEachShow(showsPosters, showId) {
-    fetch("http://webservice.fanart.tv/v3/tv/" + showId, {
-      headers: {
-        "Content-type": "application/json",
-        "api-key": "f17f6cf829e8d3c701824f1e86a32770"
-      }
+  fetchPosterForEachShow(showId) {
+    fetch("http://img.omdbapi.com/?apikey=6f97ef4f&i=" + showId)
+    .then(response => response.blob())
+    .then(image => {
+      let outside = URL.createObjectURL(image)
+      this.setState([...this.state.showsPosters, outside])
+      //console.log(outside)
     })
-      .then(response => {
-        response.json();
-      })
-      .then(showArt => {
-        showsPosters.push(showArt.showposter[0].url);
-      })
-      .catch(error => console.error(error));
   }
 
   componentDidMount() {
-    fetch("https://api.trakt.tv/shows/trending/?page=1&limit=5", {
+    fetch("https://api.trakt.tv/shows/trending/?page=1&limit=1", {
       headers: {
         "Content-type": "application/json",
         "trakt-api-key":
@@ -54,7 +48,7 @@ class App extends Component {
         
         let showsPosters = [];
         this.state.shows.map(show => {
-          let showId = show.show.ids.tmdb;
+          let showId = show.show.ids.imdb;
           this.fetchPosterForEachShow(showsPosters, showId);
         });
 
