@@ -16,21 +16,20 @@ class App extends Component {
   }
 
   showTabRow() {
-    return this.state.shows.map((show, index) => {
-      return (
-        <ShowTableRow title={show.show.title} year={show.show.year} key={index} />
-      );
-    });
+    const { shows, showsPosters } = this.state;
+    return shows.map((show, index) => <ShowTableRow title={show.show.title} year={show.show.year} showPoster={showsPosters[index]} key={index} /> );
   }
 
   fetchPosterForEachShow(showId) {
     fetch("http://img.omdbapi.com/?apikey=6f97ef4f&i=" + showId)
-    .then(response => response.blob())
-    .then(image => {
-      let outside = URL.createObjectURL(image)
-      this.setState([...this.state.showsPosters, outside])
-      //console.log(outside)
-    })
+      .then(response => response.blob())
+      .then(image => {
+        let outside = URL.createObjectURL(image);
+        console.log(outside);
+        this.setState([...this.state.showsPosters, outside], () => {
+          console.log(this.state.showsPosters)
+        });
+      });
   }
 
   componentDidMount() {
@@ -44,15 +43,12 @@ class App extends Component {
     })
       .then(response => response.json())
       .then(shows => {
-        this.setState({ shows: shows }, () => console.log(this.state.shows));
-        
-        let showsPosters = [];
+        this.setState({ shows: shows });
+
         this.state.shows.map(show => {
           let showId = show.show.ids.imdb;
-          this.fetchPosterForEachShow(showsPosters, showId);
+          this.fetchPosterForEachShow(showId);
         });
-
-        this.setState({ showsPosters: showsPosters }, () => console.log(this.state.showsPosters));
       })
       .catch(error => console.error(error));
   }
@@ -65,9 +61,7 @@ class App extends Component {
           value={this.state.search}
           onChange={e => this.setState({ search: e.target.value })}
         />
-        <ShowsTable
-          showTabRow={this.showTabRow}
-        />
+        <ShowsTable showTabRow={this.showTabRow} />
       </div>
     );
   }
