@@ -17,19 +17,15 @@ class App extends Component {
 
   showTabRow() {
     const { shows, showsPosters } = this.state;
-    return shows.map((show, index) => <ShowTableRow title={show.show.title} year={show.show.year} showPoster={showsPosters[index]} key={index} /> );
+    return shows.map((show, index) => <ShowTableRow number={index} title={show.show.title} year={show.show.year} poster={showsPosters[index]} watchers={show.watchers} key={index} /> );
   }
 
   fetchPosterForEachShow(showId) {
-    fetch("http://img.omdbapi.com/?apikey=6f97ef4f&i=" + showId)
-      .then(response => response.blob())
-      .then(image => {
-        let outside = URL.createObjectURL(image);
-        console.log(outside);
-        this.setState([...this.state.showsPosters, outside], () => {
-          console.log(this.state.showsPosters)
-        });
-      });
+    let imgURL = "http://img.omdbapi.com/?apikey=6f97ef4f&i=" + showId;
+    console.log(imgURL)
+    this.setState({showsPosters: [...this.state.showsPosters, imgURL]}, () => {
+      console.log(this.state.showsPosters)
+    });
   }
 
   componentDidMount() {
@@ -43,7 +39,7 @@ class App extends Component {
     })
       .then(response => response.json())
       .then(shows => {
-        this.setState({ shows: shows });
+        this.setState({ shows: shows }, () => console.log(this.state.shows));
 
         this.state.shows.map(show => {
           let showId = show.show.ids.imdb;
