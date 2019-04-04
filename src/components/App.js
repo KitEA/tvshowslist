@@ -52,8 +52,9 @@ class App extends Component {
   render() {
     return (
       <div>
-        Search:{" "}
+        <label for="search">Search:{" "}</label>
         <input
+          id="search"
           value={this.state.search}
           onChange={e => this.setState({ search: e.target.value })}
         />

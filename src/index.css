@@ -1,13 +1,21 @@
-table,
-td,
-th {
-  border: 1px solid #C0C0C0;
-  
+body {
+    padding: 20px;
+}
+
+label {
+    margin-left: 125px;
 }
 
 table {
   border-collapse: collapse;
-  width: 100%;
+  width: 80%;
+  margin: auto;
+  margin-top: 10px;
+}
+
+td, th {
+  border: 1px solid #ddd;
+  text-align: center;
 }
 
 th {
@@ -15,7 +23,9 @@ th {
 }
 
 img {
+  display: block;
+  margin: auto;
   border-radius: 10px;
-  height: 100px;
-  width: 100px;
+  height: 75%;
+  max-width: 100%;
 }
