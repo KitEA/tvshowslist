@@ -22,10 +22,7 @@ class App extends Component {
 
   fetchPosterForEachShow(showId) {
     let imgURL = "http://img.omdbapi.com/?apikey=6f97ef4f&i=" + showId;
-    console.log(imgURL)
-    this.setState({showsPosters: [...this.state.showsPosters, imgURL]}, () => {
-      console.log(this.state.showsPosters)
-    });
+    this.setState({showsPosters: [...this.state.showsPosters, imgURL]});
   }
 
   componentDidMount() {
@@ -39,7 +36,7 @@ class App extends Component {
     })
       .then(response => response.json())
       .then(shows => {
-        this.setState({ shows: shows }, () => console.log(this.state.shows));
+        this.setState({ shows: shows });
 
         this.state.shows.map(show => {
           let showId = show.show.ids.imdb;
@@ -52,7 +49,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <label for="search">Search:{" "}</label>
+        <label for="search"></label>
         <input
           id="search"
           value={this.state.search}
