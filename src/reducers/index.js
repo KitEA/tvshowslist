@@ -1,7 +1,12 @@
 import { SET_SHOWS, SET_POSTER_FOR_SHOW } from "../actions/actions";
 
+const initialState = {
+  shows: [], 
+  showsPosters: []
+}
+
 const showsAndPosters = (
-  state = { shows: [], showsPosters: [] },
+  state = initialState,
   action
 ) => {
   switch (action.type) {
@@ -10,12 +15,14 @@ const showsAndPosters = (
         shows: action.shows
       });
     case SET_POSTER_FOR_SHOW:
-      return [
-        ...state.showsPosters,
-        {
-          imgURL: action.imgURL
-        }
-      ]
+      return Object.assign({}, state, {
+        showsPosters: [
+          ...state.showsPosters,
+          {
+            imgURL: action.imgURL
+          }
+        ]
+      })
     default:
       return state;
   }

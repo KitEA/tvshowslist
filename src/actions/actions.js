@@ -16,42 +16,44 @@ export const setShows = shows => {
   return {
     type: SET_SHOWS,
     shows
-  }
+  };
 };
 
-export const setPosterForShow = (imgURL) => {
+export const setPosterForShow = imgURL => {
   return {
     type: SET_POSTER_FOR_SHOW,
     imgURL
-  }
-}
+  };
+};
 
 // async functions
 
 export const fetchShows = () => {
-    return dispatch => {
-      
-      return fetch("https://api.trakt.tv/shows/trending/?page=1&limit=1", {
-        headers: {
-          "Content-type": "application/json",
-          "trakt-api-key":
-            "d56205660f8aec540a91eec775156734f9b6c192890babc46c0efa9d95d297fc",
-          "trakt-api-version": "2"
-        }
-      })
-      .then(response => response.json())
+  return dispatch => {
+    return fetch("https://api.trakt.tv/shows/trending/?page=1&limit=1", {
+      headers: {
+        "Content-type": "application/json",
+        "trakt-api-key":
+          "d56205660f8aec540a91eec775156734f9b6c192890babc46c0efa9d95d297fc",
+        "trakt-api-version": "2"
+      }
+    })
+      .then(
+        response => response.json(),
+        error => console.log("An error occurred.", error)
+      )
       .then(shows => {
-        dispatch(setShows(shows))
-      })
-    }
-}
+        dispatch(setShows(shows));
+      });
+  };
+};
 
-export const fetchShowPoster = (showId) => {
+export const fetchShowPoster = showId => {
   return dispatch => {
     let imgURL = "http://img.omdbapi.com/?apikey=6f97ef4f&i=" + showId;
-    dispatch(setPosterForShow(imgURL))
-  }
-}
+    dispatch(setPosterForShow(imgURL));
+  };
+};
 
 export const fetchShowsWithPosters = () => {
   return (dispatch, getState) => {
@@ -60,9 +62,8 @@ export const fetchShowsWithPosters = () => {
     return dispatch(fetchShows()).then(() => {
       getState().shows.map(show => {
         let showId = show.show.ids.imdb;
-        fetchShowPoster(showId);
-      })
-    })
-    .catch(error => console.error(error));
-  }
-}
+        //dispatch(fetchShowPoster(showId));
+      });
+    });
+  };
+};

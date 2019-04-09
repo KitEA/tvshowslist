@@ -1,13 +1,13 @@
 import React from "react";
 
-const ShowsTableHeader = (onClick) => {
+const ShowsTableHeader = () => {
   return (
     <tr>
-      <th onClick={onClick}>Number</th>
-      <th onClick={onClick}>Title</th>
-      <th onClick={onClick}>Year</th>
-      <th onClick={onClick}>Poster</th>
-      <th onClick={onClick}>Watchers</th>
+      <th>Number</th>
+      <th>Title</th>
+      <th>Year</th>
+      <th>Poster</th>
+      <th>Watchers</th>
     </tr>
   );
 };
