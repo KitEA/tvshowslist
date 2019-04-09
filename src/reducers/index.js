@@ -16,13 +16,8 @@ const showsAndPosters = (
       });
     case SET_POSTER_FOR_SHOW:
       return Object.assign({}, state, {
-        showsPosters: [
-          ...state.showsPosters,
-          {
-            imgURL: action.imgURL
-          }
-        ]
-      })
+        showsPosters: [...state.showsPosters, action.imgURL]
+      });
     default:
       return state;
   }

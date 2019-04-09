@@ -62,7 +62,7 @@ export const fetchShowsWithPosters = () => {
     return dispatch(fetchShows()).then(() => {
       getState().shows.map(show => {
         let showId = show.show.ids.imdb;
-        //dispatch(fetchShowPoster(showId));
+        dispatch(fetchShowPoster(showId));
       });
     });
   };
