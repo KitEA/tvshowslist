@@ -1,9 +1,5 @@
-export const SORT_BY_COLUMN = "SORT_BY_COLUM";
+/*export const SORT_BY_COLUMN = "SORT_BY_COLUM";
 export const SEARCH_BY_COLUMN = "SEARCH_BY_COLUMN";
-
-export const SET_SHOWS = "SET_SHOWS";
-export const SET_POSTER_FOR_SHOW = "SET_POSTER_FOR_SHOW";
-//export const REQUEST_SHOWS_AND_POSTERS = "REQUEST_SHOWS_AND_POSTERS";
 
 export const sortByColumn = key => {
   return {
@@ -11,6 +7,44 @@ export const sortByColumn = key => {
     key
   };
 };
+*/
+
+/*export const REQUEST_PAGE = "REQUEST_PAGE";
+export const RECEIVE_PAGE = "RECEIVE_PAGE";
+
+export const requestPage = (page) => ({
+  type: REQUEST_PAGE,
+  page
+})
+
+export const receivePage = (page, results) => ({
+  type: RECEIVE_PAGE,
+  page, 
+  results
+}) 
+*/
+
+export const PREVIOUS_PAGE = 'PREVIOUS_PAGE';
+export const NEXT_PAGE = 'NEXT_PAGE';
+
+export const SET_SHOWS = "SET_SHOWS";
+export const SET_POSTER_FOR_SHOW = "SET_POSTER_FOR_SHOW";
+
+// pagination actions
+
+export const previousPage = () => { 
+  return { 
+    type: PREVIOUS_PAGE
+  }
+}
+
+export const nextPage = () => { 
+  return { 
+    type: NEXT_PAGE
+  }
+}
+
+// sync-async actions
 
 export const setShows = shows => {
   return {
@@ -26,11 +60,11 @@ export const setPosterForShow = imgURL => {
   };
 };
 
-// async functions
+// async actions
 
-export const fetchShows = () => {
+export const fetchShows = (page) => {
   return dispatch => {
-    return fetch("https://api.trakt.tv/shows/trending/?page=1&limit=1", {
+    return fetch(`https://api.trakt.tv/shows/trending/?page=1&limit=2`, {
       headers: {
         "Content-type": "application/json",
         "trakt-api-key":
@@ -55,11 +89,10 @@ export const fetchShowPoster = showId => {
   };
 };
 
-export const fetchShowsWithPosters = () => {
+export const fetchShowsWithPosters = (page) => {
   return (dispatch, getState) => {
-    //dispatch(requestShowsAndPosters())
-
-    return dispatch(fetchShows()).then(() => {
+    return dispatch(fetchShows(page)).then(() => {
+      console.log(getState().shows);
       getState().shows.map(show => {
         let showId = show.show.ids.imdb;
         dispatch(fetchShowPoster(showId));
