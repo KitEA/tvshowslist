@@ -10,12 +10,12 @@ const currentPage = (state = 1 , action) => {
   switch (action.type) {
     case PREVIOUS_PAGE:
       if (state > 1) {
-        return Object.assign({}, state, state - 1);
+        return state - 1;
       } else {
         return state;
       }
     case NEXT_PAGE:
-      return Object.assign({}, state, state + 1);
+      return state + 1;
     default:
       return state;
   }

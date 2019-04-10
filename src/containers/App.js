@@ -14,13 +14,13 @@ class App extends Component {
   }
 
   showTabRow() {
-    const { shows, showsPosters } = this.props;
+    const { shows, posters } = this.props;
     return shows.map((show, index) => (
       <ShowTableRow
         number={index}
         title={show.show.title}
         year={show.show.year}
-        poster={showsPosters[index]}
+        poster={posters[index]}
         watchers={show.watchers}
         key={index}
       />
@@ -57,7 +57,7 @@ class App extends Component {
 
 const mapStateToProps = state => ({
   shows: state.shows,
-  showsPosters: state.showsPosters,
+  posters: state.posters,
   currentPage: state.currentPage
 });
 
