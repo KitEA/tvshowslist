@@ -33,7 +33,7 @@ const shows = (state = [], action) => {
 const posters = (state = [], action) => {
   switch (action.type) {
     case SET_POSTER_FOR_SHOW:
-      return [...state, action.imgURL];
+      return Object.assign([], state, action.postersForShows); //[...state, action.imgURL];
     default:
       return state;
   }

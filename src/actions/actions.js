@@ -53,10 +53,10 @@ export const setShows = shows => {
   };
 };
 
-export const setPosterForShow = imgURL => {
+export const setPosterForShow = postersForShows => {
   return {
     type: SET_POSTER_FOR_SHOW,
-    imgURL
+    postersForShows
   };
 };
 
@@ -85,20 +85,17 @@ export const fetchShows = () => {
   };
 };
 
-export const fetchShowPoster = showId => {
-  return dispatch => {
-    let imgURL = "http://img.omdbapi.com/?apikey=6f97ef4f&i=" + showId;
-    dispatch(setPosterForShow(imgURL));
-  };
-};
-
 export const fetchShowsWithPosters = () => {
   return (dispatch, getState) => {
     return dispatch(fetchShows()).then(() => {
+      let postersForShows = [];
       getState().shows.map(show => {
         let showId = show.ids.imdb;
-        dispatch(fetchShowPoster(showId));
+        let imgURL = "http://img.omdbapi.com/?apikey=6f97ef4f&i=" + showId;
+        postersForShows = [...postersForShows, imgURL];
       });
+      console.log(postersForShows);
+      dispatch(setPosterForShow(postersForShows));
     });
   };
 };
