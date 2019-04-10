@@ -14,10 +14,10 @@ class App extends Component {
   }
 
   showTabRow() {
-    const { shows, posters } = this.props;
+    const { shows, posters, currentPage } = this.props;
     return shows.map((show, index) => (
       <ShowTableRow
-        number={index}
+        number={index+1 + (currentPage-1)*3}
         title={show.title}
         year={show.year}
         poster={posters[index]}
@@ -27,20 +27,22 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const { dispatch, currentPage } = this.props;
-    dispatch(fetchShowsWithPosters(currentPage));
+    const { dispatch} = this.props;
+    dispatch(fetchShowsWithPosters());
   }
 
   previousPage() {
     console.log("in previous page");
     const { dispatch } = this.props;
     dispatch(previousPage());
+    dispatch(fetchShowsWithPosters());
   }
 
   nextPage() {
     console.log("in next page");
     const { dispatch } = this.props;
     dispatch(nextPage());
+    dispatch(fetchShowsWithPosters());
   }
 
   render() {
