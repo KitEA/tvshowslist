@@ -18,10 +18,9 @@ class App extends Component {
     return shows.map((show, index) => (
       <ShowTableRow
         number={index}
-        title={show.show.title}
-        year={show.show.year}
+        title={show.title}
+        year={show.year}
         poster={posters[index]}
-        watchers={show.watchers}
         key={index}
       />
     ));

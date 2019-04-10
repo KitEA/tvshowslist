@@ -7,7 +7,6 @@ const ShowsTableHeader = () => {
       <th>Title</th>
       <th>Year</th>
       <th>Poster</th>
-      <th>Watchers</th>
     </tr>
   );
 };

@@ -64,8 +64,7 @@ export const setPosterForShow = imgURL => {
 
 export const fetchShows = (page) => {
   return dispatch => {
-    console.log(`https://api.trakt.tv/shows/trending/?page=${page}&limit=1`);
-    return fetch(`https://api.trakt.tv/shows/trending/?page=${page}&limit=1`, {
+    return fetch(`https://api.trakt.tv/shows/popular/?page=1&limit=5`, {
       headers: {
         "Content-type": "application/json",
         "trakt-api-key":
@@ -94,7 +93,7 @@ export const fetchShowsWithPosters = (page) => {
   return (dispatch, getState) => {
     return dispatch(fetchShows(page)).then(() => {
       getState().shows.map(show => {
-        let showId = show.show.ids.imdb;
+        let showId = show.ids.imdb;
         dispatch(fetchShowPoster(showId));
       });
     });
