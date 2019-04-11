@@ -1,19 +1,30 @@
-/*export const SORT_BY_COLUMN = "SORT_BY_COLUM";
-export const SEARCH_BY_COLUMN = "SEARCH_BY_COLUMN";
-
-export const sortByColumn = key => {
-  return {
-    type: SORT_BY_COLUMN,
-    key
-  };
-};
-*/
+export const SORT_SHOWS = "SORT_SHOWS";
+export const SET_SORT_ORDER = "SET_SORT_ORDER";
+// export const SEARCH_BY_COLUMN = "SEARCH_BY_COLUMN";
 
 export const PREVIOUS_PAGE = 'PREVIOUS_PAGE';
 export const NEXT_PAGE = 'NEXT_PAGE';
 
 export const SET_SHOWS = "SET_SHOWS";
 export const SET_POSTER_FOR_SHOW = "SET_POSTER_FOR_SHOW";
+
+// sort actions 
+
+export const sortShows = (shows, sortKey, sortOrder) => {
+  return {
+    type: SORT_SHOWS,
+    shows,
+    sortKey,
+    sortOrder
+  }
+}
+
+export const setSortOrder = sortOrder => {
+  return {
+    type: SET_SORT_ORDER,
+    sortOrder
+  }
+}
 
 // pagination actions
 

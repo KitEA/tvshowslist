@@ -1,11 +1,11 @@
 import React from "react";
 import ShowsTableHeader from "./ShowsTableHeader";
 
-const ShowsTable = ({ showTabRow }) => {
+const ShowsTable = ({ sortByHeader, showTabRow }) => {
   return (
     <table>
       <thead>
-        <ShowsTableHeader />
+        <ShowsTableHeader sortByHeader={sortByHeader} />
       </thead>
       <tbody>{showTabRow()}</tbody>
     </table>
