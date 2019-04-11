@@ -3,7 +3,7 @@ import ShowsTable from "../components/ShowsTable";
 import ShowTableRow from "../components/ShowTableRow";
 import PageSelector from "../components/PageSelector";
 import { connect } from "react-redux";
-import { fetchShowsWithPosters, previousPage, nextPage, sortShows, setSortOrder } from "../actions/actions";
+import { previousPage, nextPage, sortShows, setSortOrder, fetchShows } from "../actions/actions";
 
 class App extends Component {
   constructor(props) {
@@ -15,13 +15,13 @@ class App extends Component {
   }
 
   showTabRow() {
-    const { shows, posters, currentPage } = this.props;
+    const { shows, currentPage } = this.props;
     return shows.map((show, index) => (
       <ShowTableRow
         number={index+1 + (currentPage-1)*3}
         title={show.title}
         year={show.year}
-        poster={posters[index]}
+        poster={show.poster}
         key={index}
       />
     ));
@@ -29,7 +29,6 @@ class App extends Component {
 
   sortByHeader(headerKey) {
     const { dispatch, shows, sort } = this.props;
-    //console.log(sort)
     dispatch(sortShows(shows, headerKey, sort));
     if (sort === "asc") {
       dispatch(setSortOrder("desc"));
@@ -40,19 +39,19 @@ class App extends Component {
 
   componentDidMount() {
     const { dispatch } = this.props;
-    dispatch(fetchShowsWithPosters());
+    dispatch(fetchShows());
   }
 
   previousPage() {
     const { dispatch } = this.props;
     dispatch(previousPage());
-    dispatch(fetchShowsWithPosters());
+    dispatch(fetchShows());
   }
 
   nextPage() {
     const { dispatch } = this.props;
     dispatch(nextPage());
-    dispatch(fetchShowsWithPosters());
+    dispatch(fetchShows());
   }
 
   render() {
@@ -68,7 +67,6 @@ class App extends Component {
 
 const mapStateToProps = state => ({
   shows: state.shows,
-  posters: state.posters,
   currentPage: state.currentPage,
   sort: state.sort
 });

@@ -6,7 +6,6 @@ export const PREVIOUS_PAGE = 'PREVIOUS_PAGE';
 export const NEXT_PAGE = 'NEXT_PAGE';
 
 export const SET_SHOWS = "SET_SHOWS";
-export const SET_POSTER_FOR_SHOW = "SET_POSTER_FOR_SHOW";
 
 // sort actions 
 
@@ -49,13 +48,6 @@ export const setShows = shows => {
   };
 };
 
-export const setPosterForShow = postersForShows => {
-  return {
-    type: SET_POSTER_FOR_SHOW,
-    postersForShows
-  };
-};
-
 // async actions
 
 export const fetchShows = () => {
@@ -74,21 +66,13 @@ export const fetchShows = () => {
         error => console.log("An error occurred.", error)
       )
       .then(shows => {
-        dispatch(setShows(shows));
+        const showsWithPosters = shows.map(show => {
+          let showId = show.ids.imdb;
+          let imgURL = "http://img.omdbapi.com/?apikey=6f97ef4f&i=" + showId;
+          show.poster = imgURL;
+          return show;
+        });
+        dispatch(setShows(showsWithPosters));
       });
-  };
-};
-
-export const fetchShowsWithPosters = () => {
-  return (dispatch, getState) => {
-    return dispatch(fetchShows()).then(() => {
-      let postersForShows = [];
-      getState().shows.map(show => {
-        let showId = show.ids.imdb;
-        let imgURL = "http://img.omdbapi.com/?apikey=6f97ef4f&i=" + showId;
-        postersForShows = [...postersForShows, imgURL];
-      });
-      dispatch(setPosterForShow(postersForShows));
-    });
   };
 };
