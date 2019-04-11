@@ -32,14 +32,12 @@ class App extends Component {
   }
 
   previousPage() {
-    console.log("in previous page");
     const { dispatch } = this.props;
     dispatch(previousPage());
     dispatch(fetchShowsWithPosters());
   }
 
   nextPage() {
-    console.log("in next page");
     const { dispatch } = this.props;
     dispatch(nextPage());
     dispatch(fetchShowsWithPosters());

@@ -9,21 +9,6 @@ export const sortByColumn = key => {
 };
 */
 
-/*export const REQUEST_PAGE = "REQUEST_PAGE";
-export const RECEIVE_PAGE = "RECEIVE_PAGE";
-
-export const requestPage = (page) => ({
-  type: REQUEST_PAGE,
-  page
-})
-
-export const receivePage = (page, results) => ({
-  type: RECEIVE_PAGE,
-  page, 
-  results
-}) 
-*/
-
 export const PREVIOUS_PAGE = 'PREVIOUS_PAGE';
 export const NEXT_PAGE = 'NEXT_PAGE';
 
@@ -65,8 +50,6 @@ export const setPosterForShow = postersForShows => {
 export const fetchShows = () => {
   return (dispatch, getState) => {
     const page = getState().currentPage;
-    console.log(page);
-    console.log(`https://api.trakt.tv/shows/popular/?page=${page}&limit=3`);
     return fetch(`https://api.trakt.tv/shows/popular/?page=${page}&limit=3`, {
       headers: {
         "Content-type": "application/json",
@@ -94,7 +77,6 @@ export const fetchShowsWithPosters = () => {
         let imgURL = "http://img.omdbapi.com/?apikey=6f97ef4f&i=" + showId;
         postersForShows = [...postersForShows, imgURL];
       });
-      console.log(postersForShows);
       dispatch(setPosterForShow(postersForShows));
     });
   };
