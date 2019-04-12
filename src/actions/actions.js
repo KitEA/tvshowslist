@@ -1,11 +1,22 @@
 export const SORT_SHOWS = "SORT_SHOWS";
 export const SET_SORT_ORDER = "SET_SORT_ORDER";
-// export const SEARCH_BY_COLUMN = "SEARCH_BY_COLUMN";
+export const SEARCH_BY_COLUMN;
 
 export const PREVIOUS_PAGE = 'PREVIOUS_PAGE';
 export const NEXT_PAGE = 'NEXT_PAGE';
 
 export const SET_SHOWS = "SET_SHOWS";
+
+
+// search actions
+
+export const searchByColumn = (shows, input) => {
+  return {
+    type: SEARCH_BY_COLUMN,
+    shows,
+    input
+  }
+}
 
 // sort actions 
 

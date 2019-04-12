@@ -3,10 +3,11 @@ import {
   PREVIOUS_PAGE,
   NEXT_PAGE,
   SORT_SHOWS,
-  SET_SORT_ORDER
+  SET_SORT_ORDER,
+  SEARCH_BY_COLUMN
 } from "../actions/actions";
-import { combineReducers, compose } from "redux";
-import { orderBy } from "lodash";
+import { combineReducers } from "redux";
+import { orderBy, filter } from "lodash";
 
 const currentPage = (state = 1, action) => {
   switch (action.type) {
@@ -28,7 +29,7 @@ const shows = (state = [], action) => {
     case SET_SHOWS:
       return Object.assign([], state, action.shows);
     case SORT_SHOWS:
-      let sortedShows = orderBy(action.shows, action.sortKey, action.sortOrder);
+      const sortedShows = orderBy(action.shows, action.sortKey, action.sortOrder);
       return sortedShows;
     default:
       return state;
@@ -47,10 +48,21 @@ const sort = (
   }
 };
 
+const search = (state = "", action) => {
+  switch (action.type) {
+    case SEARCH_BY_COLUMN:
+      const matchedElements = filter(action.shows, action.input);
+      return matchedElements;
+    default:
+      return state;
+  }
+}
+
 const tvShowsListApp = combineReducers({
   currentPage,
   shows,
-  sort
+  sort,
+  search
 });
 
 export default tvShowsListApp;
