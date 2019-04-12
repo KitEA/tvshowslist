@@ -2,8 +2,17 @@ import React, { Component } from "react";
 import ShowsTable from "../components/ShowsTable";
 import ShowTableRow from "../components/ShowTableRow";
 import PageSelector from "../components/PageSelector";
+import SearchBar from "../components/SearchBar";
 import { connect } from "react-redux";
-import { previousPage, nextPage, sortShows, setSortOrder, fetchShows } from "../actions/actions";
+import {
+  previousPage,
+  nextPage,
+  sortShows,
+  setSortOrder,
+  fetchShows,
+  searchByColumn,
+  changeSearchValue
+} from "../actions/actions";
 
 class App extends Component {
   constructor(props) {
@@ -12,19 +21,34 @@ class App extends Component {
     this.previousPage = this.previousPage.bind(this);
     this.nextPage = this.nextPage.bind(this);
     this.sortByHeader = this.sortByHeader.bind(this);
+    this.searchByColumn = this.searchByColumn.bind(this);
   }
 
   showTabRow() {
-    const { shows, currentPage } = this.props;
-    return shows.map((show, index) => (
-      <ShowTableRow
-        number={index+1 + (currentPage-1)*3}
-        title={show.title}
-        year={show.year}
-        poster={show.poster}
-        key={index}
-      />
-    ));
+    const { shows, searchResults, currentPage } = this.props;
+    if (searchResults && searchResults.length === 0) {
+      //console.log("shows");
+      return shows.map((show, index) => (
+        <ShowTableRow
+          number={index + 1 + (currentPage - 1) * 3}
+          title={show.title}
+          year={show.year}
+          poster={show.poster}
+          key={index}
+        />
+      ));
+    } else {
+      //console.log("search results");
+      return searchResults.map((show, index) => (
+        <ShowTableRow
+          number={index + 1 + (currentPage - 1) * 3}
+          title={show.title}
+          year={show.year}
+          poster={show.poster}
+          key={index}
+        />
+      ));
+    }
   }
 
   sortByHeader(headerKey) {
@@ -34,6 +58,22 @@ class App extends Component {
       dispatch(setSortOrder("desc"));
     } else if (sort === "desc") {
       dispatch(setSortOrder("asc"));
+    }
+  }
+
+  /* changeSearchValue(input) {
+    const { dispatch } = this.props;
+    dispatch(changeSearchValue(input));
+  } */
+
+  searchByColumn(event) {
+    const { dispatch } = this.props;
+    dispatch(changeSearchValue(event.target.value));
+    const { shows, search } = this.props;
+    if (search === "") {
+      return;
+    } else {
+      dispatch(searchByColumn(shows, search));
     }
   }
 
@@ -57,9 +97,18 @@ class App extends Component {
   render() {
     return (
       <div>
-        {/* SearchBar */}
-        <ShowsTable showTabRow={this.showTabRow} sortByHeader={this.sortByHeader} />
-        <PageSelector previousPage={this.previousPage} nextPage={this.nextPage} />
+        <SearchBar
+          searchBarValue={this.props.search}
+          searchByColumn={this.searchByColumn}
+        />
+        <ShowsTable
+          showTabRow={this.showTabRow}
+          sortByHeader={this.sortByHeader}
+        />
+        <PageSelector
+          previousPage={this.previousPage}
+          nextPage={this.nextPage}
+        />
       </div>
     );
   }
@@ -68,7 +117,9 @@ class App extends Component {
 const mapStateToProps = state => ({
   shows: state.shows,
   currentPage: state.currentPage,
-  sort: state.sort
+  sort: state.sort,
+  search: state.search,
+  searchResults: state.searchResults
 });
 
 export default connect(mapStateToProps)(App);

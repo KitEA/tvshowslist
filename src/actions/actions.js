@@ -1,24 +1,37 @@
+// sortActions
 export const SORT_SHOWS = "SORT_SHOWS";
 export const SET_SORT_ORDER = "SET_SORT_ORDER";
-export const SEARCH_BY_COLUMN;
 
+// searchActions
+export const CHANGE_SEARCH_VALUE = "CHANGE_SEARCH_VALUE";
+export const SEARCH_BY_COLUMN = "SEARCH_BY_COLUMN";
+
+// pageActions
 export const PREVIOUS_PAGE = 'PREVIOUS_PAGE';
 export const NEXT_PAGE = 'NEXT_PAGE';
 
+// asyncAction
 export const SET_SHOWS = "SET_SHOWS";
 
 
-// search actions
+// search actions creators
 
-export const searchByColumn = (shows, input) => {
+export const changeSearchValue = input => {
   return {
-    type: SEARCH_BY_COLUMN,
-    shows,
+    type: CHANGE_SEARCH_VALUE,
     input
   }
 }
 
-// sort actions 
+export const searchByColumn = (shows, searchValue) => {
+  return {
+    type: SEARCH_BY_COLUMN,
+    shows,
+    searchValue
+  }
+}
+
+// sort actions creators
 
 export const sortShows = (shows, sortKey, sortOrder) => {
   return {
@@ -36,7 +49,7 @@ export const setSortOrder = sortOrder => {
   }
 }
 
-// pagination actions
+// pagination actions creators
 
 export const previousPage = () => { 
   return { 
@@ -50,7 +63,7 @@ export const nextPage = () => {
   }
 }
 
-// sync-async actions
+// sync-async actions creators
 
 export const setShows = shows => {
   return {

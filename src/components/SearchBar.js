@@ -1,16 +1,18 @@
 import React from "react";
+// import { connect } from "react-redux";
 
-const SearchBar = () => {
+const SearchBar = ({ searchBarValue, searchByColumn }) => {
   return (
     <div>
       Search:{" "}
       <input
-        id="search"
-        value={this.state.search}
-        onChange={e => this.setState({ search: e.target.value })}
+        type="text"
+        placeholder="input value to search"
+        value={searchBarValue}
+        onChange={searchByColumn}
       />
     </div>
   );
 };
 
-export default SearchBar;
+export default SearchBar; //connect()(SearchBar);

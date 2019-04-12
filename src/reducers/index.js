@@ -4,7 +4,8 @@ import {
   NEXT_PAGE,
   SORT_SHOWS,
   SET_SORT_ORDER,
-  SEARCH_BY_COLUMN
+  SEARCH_BY_COLUMN,
+  CHANGE_SEARCH_VALUE
 } from "../actions/actions";
 import { combineReducers } from "redux";
 import { orderBy, filter } from "lodash";
@@ -50,8 +51,19 @@ const sort = (
 
 const search = (state = "", action) => {
   switch (action.type) {
+    case CHANGE_SEARCH_VALUE:
+      return action.input;
+    default:
+      return state;
+  }
+}
+
+const searchResults = (state = [], action) => {
+  switch (action.type) {
     case SEARCH_BY_COLUMN:
-      const matchedElements = filter(action.shows, action.input);
+      const matchedElements = filter(action.shows, (show) => {
+        return show.title === action.searchValue || show.year === action.searchValue;
+      })
       return matchedElements;
     default:
       return state;
@@ -62,7 +74,8 @@ const tvShowsListApp = combineReducers({
   currentPage,
   shows,
   sort,
-  search
+  search,
+  searchResults
 });
 
 export default tvShowsListApp;
