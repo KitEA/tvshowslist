@@ -27,7 +27,6 @@ class App extends Component {
   showTabRow() {
     const { shows, searchResults, currentPage } = this.props;
     if (searchResults && searchResults.length === 0) {
-      //console.log("shows");
       return shows.map((show, index) => (
         <ShowTableRow
           number={index + 1 + (currentPage - 1) * 3}
@@ -38,7 +37,6 @@ class App extends Component {
         />
       ));
     } else {
-      //console.log("search results");
       return searchResults.map((show, index) => (
         <ShowTableRow
           number={index + 1 + (currentPage - 1) * 3}
@@ -61,18 +59,13 @@ class App extends Component {
     }
   }
 
-  /* changeSearchValue(input) {
-    const { dispatch } = this.props;
-    dispatch(changeSearchValue(input));
-  } */
-
   searchByColumn(event) {
     const { dispatch } = this.props;
     dispatch(changeSearchValue(event.target.value));
-    const { shows, search } = this.props;
-    if (search === "") {
+    if (this.props.search === "") {
       return;
     } else {
+      const { shows, search } = this.props;
       dispatch(searchByColumn(shows, search));
     }
   }

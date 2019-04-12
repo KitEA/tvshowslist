@@ -8,7 +8,7 @@ import {
   CHANGE_SEARCH_VALUE
 } from "../actions/actions";
 import { combineReducers } from "redux";
-import { orderBy, filter } from "lodash";
+import { orderBy } from "lodash";
 
 const currentPage = (state = 1, action) => {
   switch (action.type) {
@@ -61,9 +61,11 @@ const search = (state = "", action) => {
 const searchResults = (state = [], action) => {
   switch (action.type) {
     case SEARCH_BY_COLUMN:
-      const matchedElements = filter(action.shows, (show) => {
-        return show.title === action.searchValue || show.year === action.searchValue;
-      })
+      const showsToSearchThrough = action.shows;
+      const whatToSearch = action.searchValue;
+      const matchedElements = showsToSearchThrough.filter(show => {
+        return show.title.includes(whatToSearch) || String(show.year).includes(whatToSearch);
+      });
       return matchedElements;
     default:
       return state;
