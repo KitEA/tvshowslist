@@ -61,13 +61,10 @@ class App extends Component {
 
   searchByColumn(event) {
     const { dispatch } = this.props;
-    dispatch(changeSearchValue(event.target.value));
-    if (this.props.search === "") {
-      return;
-    } else {
-      const { shows, search } = this.props;
-      dispatch(searchByColumn(shows, search));
-    }
+    const currentSearchBarValue = event.target.value;
+    dispatch(changeSearchValue(currentSearchBarValue));
+    const { shows } = this.props;
+    dispatch(searchByColumn(shows, currentSearchBarValue));
   }
 
   componentDidMount() {
