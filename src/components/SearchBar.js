@@ -1,5 +1,5 @@
 import React from "react";
-// import { connect } from "react-redux";
+import PropTypes from 'prop-types';
 
 const SearchBar = ({ searchBarValue, searchByColumn }) => {
   return (
@@ -15,4 +15,9 @@ const SearchBar = ({ searchBarValue, searchByColumn }) => {
   );
 };
 
-export default SearchBar; //connect()(SearchBar);
+SearchBar.propTypes = {
+  searchBarValue: PropTypes.string.isRequired,
+  searchByColumn: PropTypes.func.isRequired
+}
+
+export default SearchBar;

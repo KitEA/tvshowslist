@@ -1,6 +1,7 @@
 import React from "react";
 import ShowsTableHeader from "./ShowsTableHeader";
 import ShowTableRow from "../components/ShowTableRow";
+import PropTypes from 'prop-types';
 
 const ShowsTable = ({ sortByHeader, shows, searchResults, currentPage }) => {
   
@@ -41,5 +42,12 @@ const ShowsTable = ({ sortByHeader, shows, searchResults, currentPage }) => {
     </table>
   );
 };
+
+ShowsTable.propTypes = {
+  sortByHeader: PropTypes.func.isRequired,
+  shows: PropTypes.array.isRequired,
+  searchResults: PropTypes.array.isRequired,
+  currentPage: PropTypes.number.isRequired
+}
 
 export default ShowsTable;
