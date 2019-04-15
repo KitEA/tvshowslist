@@ -1,27 +1,11 @@
 import React, { Component } from "react";
-import SearchBar from "../components/SearchBar";
 import { connect } from "react-redux";
-import {
-  fetchShows,
-  searchByColumn,
-  changeSearchValue
-} from "../actions/actions";
+import { fetchShows } from "../actions/actions";
 import PageLoader from "./PageLoader";
 import TableRenderer from "./TableRenderer";
+import SearchRunner from "./SearchRunner";
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.searchByColumn = this.searchByColumn.bind(this);
-  }
-
-  searchByColumn(event) {
-    const { dispatch } = this.props;
-    const currentSearchBarValue = event.target.value;
-    dispatch(changeSearchValue(currentSearchBarValue));
-    const { shows } = this.props;
-    dispatch(searchByColumn(shows, currentSearchBarValue));
-  }
 
   componentDidMount() {
     const { dispatch } = this.props;
@@ -31,10 +15,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <SearchBar
-          searchBarValue={this.props.search}
-          searchByColumn={this.searchByColumn}
-        />
+        <SearchRunner />
         <TableRenderer />
         <PageLoader />
       </div>
