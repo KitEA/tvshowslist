@@ -5,13 +5,13 @@ import ShowTableRow from "../components/ShowTableRow";
 const ShowsTable = ({ sortByHeader, shows, searchResults, currentPage }) => {
   
   const itemsPerPage = 3;
-  const ensureProperNumberColumn = 1;
+  const numberShouldNotStartFromZero = 1;
   const firstPageShouldNotMultiplicate = 1;
 
   const showTabRowComponent = (show, pageCount) => {
     return (
       <ShowTableRow
-        number={pageCount + ensureProperNumberColumn + (currentPage - firstPageShouldNotMultiplicate) * itemsPerPage}
+        number={pageCount + numberShouldNotStartFromZero + (currentPage - firstPageShouldNotMultiplicate) * itemsPerPage}
         title={show.title}
         year={show.year}
         poster={show.poster}

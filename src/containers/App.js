@@ -23,12 +23,4 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  shows: state.shows,
-  currentPage: state.currentPage,
-  sort: state.sort,
-  search: state.search,
-  searchResults: state.searchResults
-});
-
-export default connect(mapStateToProps)(App);
+export default connect()(App);
