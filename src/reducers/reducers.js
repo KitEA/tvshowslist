@@ -6,7 +6,7 @@ import {
   SET_SORT_ORDER,
   SEARCH_BY_COLUMN,
   CHANGE_SEARCH_VALUE
-} from "../actions/actions";
+} from "../actions/ActionTypes";
 import { combineReducers } from "redux";
 import { orderBy } from "lodash";
 

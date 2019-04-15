@@ -1,18 +1,4 @@
-// sortActions
-export const SORT_SHOWS = "SORT_SHOWS";
-export const SET_SORT_ORDER = "SET_SORT_ORDER";
-
-// searchActions
-export const CHANGE_SEARCH_VALUE = "CHANGE_SEARCH_VALUE";
-export const SEARCH_BY_COLUMN = "SEARCH_BY_COLUMN";
-
-// pageActions
-export const PREVIOUS_PAGE = 'PREVIOUS_PAGE';
-export const NEXT_PAGE = 'NEXT_PAGE';
-
-// asyncAction
-export const SET_SHOWS = "SET_SHOWS";
-
+import { SORT_SHOWS, SET_SORT_ORDER, CHANGE_SEARCH_VALUE, SEARCH_BY_COLUMN, PREVIOUS_PAGE, NEXT_PAGE, SET_SHOWS } from './ActionTypes';
 
 // search actions creators
 

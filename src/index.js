@@ -3,7 +3,7 @@ import { render } from "react-dom";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import App from "./containers/App";
-import tvShowsListApp from "./reducers/index";
+import tvShowsListApp from "./reducers/reducers";
 import "./index.css";
 import thunk from "redux-thunk";
 import { createLogger } from 'redux-logger';
