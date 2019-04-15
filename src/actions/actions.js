@@ -77,10 +77,14 @@ export const fetchShows = () => {
       )
       .then(shows => {
         const showsWithPosters = shows.map(show => {
-          let showId = show.ids.imdb;
+          let unwrapAppSpecificFields = ({ 
+            ids: { imdb }, title, year
+          }) => ({ id: imdb, title, year });
+          let pickedShow = unwrapAppSpecificFields(show);
+          let showId = pickedShow.id;
           let imgURL = "http://img.omdbapi.com/?apikey=6f97ef4f&i=" + showId;
-          show.poster = imgURL;
-          return show;
+          pickedShow.poster = imgURL;
+          return pickedShow;
         });
         dispatch(setShows(showsWithPosters));
       });
