@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ShowsTable component matches the snapshot 1`] = `
+<table>
+  <thead>
+    <tr>
+      <th>
+        Number
+      </th>
+      <th
+        onClick={[Function]}
+      >
+        Title
+      </th>
+      <th
+        onClick={[Function]}
+      >
+        Year
+      </th>
+      <th>
+        Poster
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        1
+      </td>
+      <td>
+        Game of Thrones
+      </td>
+      <td>
+        2011
+      </td>
+      <td>
+        <img
+          alt=""
+          src="http://img.omdbapi.com/?apikey=6f97ef4f&i=tt0944947"
+        />
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2
+      </td>
+      <td>
+        Breaking Bad
+      </td>
+      <td>
+        2008
+      </td>
+      <td>
+        <img
+          alt=""
+          src="http://img.omdbapi.com/?apikey=6f97ef4f&i=tt0903747"
+        />
+      </td>
+    </tr>
+    <tr>
+      <td>
+        3
+      </td>
+      <td>
+        The Walking Dead
+      </td>
+      <td>
+        2010
+      </td>
+      <td>
+        <img
+          alt=""
+          src="http://img.omdbapi.com/?apikey=6f97ef4f&i=tt1520211"
+        />
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
