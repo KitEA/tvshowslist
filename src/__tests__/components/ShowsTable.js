@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import ShowsTable from "../components/ShowsTable";
+import ShowsTable from "../../components/ShowsTable";
 import { shallow } from "enzyme";
 
 const shows = [
@@ -41,11 +41,16 @@ function setup() {
 describe("ShowsTable component", () => {
   it("matches the snapshot", () => {
     const tree = renderer
-      .create(<ShowsTable shows={shows} currentPage={1} searchResults={[]} />)
+      .create(
+        <ShowsTable
+          shows={shows}
+          currentPage={1}
+          searchResults={[]}
+          sortByHeader={() => {}}
+        />
+      )
       .toJSON();
     expect(tree).toMatchSnapshot();
   });
-  it("should map through shows if searchResults is 0 length or doesn't exist", () => {
-    
-  });
+  it("should map through shows if searchResults is 0 length or doesn't exist", () => {});
 });

@@ -1,8 +1,8 @@
 /* import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import fetchMock from 'fetch-mock'; */
-import * as types from "../actions/ActionTypes";
-import * as actions from "../actions/actions";
+import * as types from "../../actions/ActionTypes";
+import * as actions from "../../actions/actions";
 
 const shows = [
   {
@@ -33,7 +33,9 @@ describe("actions", () => {
       sortKey,
       sortOrder
     };
-    expect(actions.sortShows(shows, sortKey, sortOrder)).toEqual(expectedAction);
+    expect(actions.sortShows(shows, sortKey, sortOrder)).toEqual(
+      expectedAction
+    );
   });
   it("should create an action to change sort order", () => {
     const expectedAction = {

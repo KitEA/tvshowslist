@@ -1,5 +1,5 @@
-import tvShowsListApp from "../reducers/reducers";
-import * as types from "../actions/ActionTypes";
+import tvShowsListApp from "../../reducers/reducers";
+import * as types from "../../actions/ActionTypes";
 
 const stateBefore = (currentPage = 1, sort = "desc") => {
   return {
