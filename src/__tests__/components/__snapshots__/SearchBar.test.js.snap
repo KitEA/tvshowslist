@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchBar matches the snapshot 1`] = `
+<div>
+  Search:
+   
+  <input
+    onChange={[Function]}
+    placeholder="input value to search"
+    type="text"
+    value=""
+  />
+</div>
+`;

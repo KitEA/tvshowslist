@@ -1,26 +1,63 @@
-/* import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
-import fetchMock from 'fetch-mock'; */
+import configureMockStore from "redux-mock-store";
+import thunk from "redux-thunk";
+import fetchMock from "fetch-mock";
 import * as types from "../../actions/ActionTypes";
 import * as actions from "../../actions/actions";
+
+const middlewares = [thunk];
+const mockStore = configureMockStore(middlewares);
 
 const shows = [
   {
     title: "Game of Thrones",
     year: 2011,
-    id: "tt0944947"
+    id: "tt0944947",
+    poster: "http://img.omdbapi.com/?apikey=6f97ef4f&i=tt0944947"
   },
   {
     title: "Breaking Bad",
     year: 2008,
-    id: "tt0903747"
-  },
-  {
-    title: "The Walking Dead",
-    year: 2010,
-    id: "tt1520211"
+    id: "tt0903747",
+    poster: "http://img.omdbapi.com/?apikey=6f97ef4f&i=tt0903747"
   }
 ];
+
+const mockShows = [
+  {
+    title: "Game of Thrones",
+    year: 2011,
+    ids: {
+      trakt: 1390,
+      slug: "game-of-thrones",
+      tvdb: 121361,
+      imdb: "tt0944947",
+      tmdb: 1399,
+      tvrage: 24493
+    }
+  },
+  {
+    title: "Breaking Bad",
+    year: 2008,
+    ids: {
+      trakt: 1388,
+      slug: "breaking-bad",
+      tvdb: 81189,
+      imdb: "tt0903747",
+      tmdb: 1396,
+      tvrage: 18164
+    }
+  }
+];
+
+const stateBefore = (currentPage = 1, sort = "desc") => {
+  return {
+    currentPage: currentPage,
+    shows: [],
+    sort: sort,
+    search: "",
+    searchResults: []
+  };
+};
 
 const sortOrder = "desc";
 
@@ -79,5 +116,29 @@ describe("actions", () => {
       shows
     };
     expect(actions.setShows(shows)).toEqual(expectedAction);
+  });
+});
+
+describe("async actions", () => {
+  afterEach(() => {
+    fetchMock.restore();
+  });
+
+  it("fetches shows", async () => {
+    fetchMock.getOnce(`https://api.trakt.tv/shows/popular/?page=${1}&limit=3`, {
+      body: mockShows,
+      headers: {
+        "content-type": "application/json"
+      }
+    });
+
+    const store = mockStore(stateBefore());
+
+    return store.dispatch(actions.fetchShows()).then(() => {
+      expect(store.getActions()).toEqual([{
+        type: types.SET_SHOWS,
+        shows
+      }]);
+    });
   });
 });

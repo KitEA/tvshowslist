@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PageSelector matches the snapshot 1`] = `
+<div>
+  <button
+    onClick={[Function]}
+  >
+    Previous Page
+  </button>
+  <button
+    onClick={[Function]}
+  >
+    Next Page
+  </button>
+</div>
+`;
