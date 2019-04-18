@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const SearchBar = ({ searchBarValue, searchByColumn }) => {
   return (
-    <div>
+    <div className="search-bar">
       Search:{" "}
       <input
         className="search-input"

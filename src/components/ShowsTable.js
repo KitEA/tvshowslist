@@ -34,7 +34,7 @@ const ShowsTable = ({ sortByHeader, shows, searchResults, currentPage }) => {
   };
 
   return (
-    <table>
+    <table className="data-table">
       <thead>
         <ShowsTableHeader sortByHeader={sortByHeader} />
       </thead>

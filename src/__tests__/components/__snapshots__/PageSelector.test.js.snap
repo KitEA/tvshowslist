@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PageSelector matches the snapshot 1`] = `
-<div>
+<div
+  className="page-selector"
+>
   <button
     className="previous-page-button"
     onClick={[Function]}

@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ShowsTable component matches the snapshot 1`] = `
-<table>
+<table
+  className="data-table"
+>
   <thead>
     <tr>
       <th>

@@ -1,23 +1,40 @@
-.SearchRunner {
+.container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 20px 1fr 1fr;
+  grid-row-gap: 20px;
+  grid-template-areas:
+    "top"
+    "content"
+    "bottom";
+}
 
+.search-bar {
+  grid-area: top;
+  justify-self: center;
+}
+
+.data-table {
+  grid-area: content;
+  justify-self: center;
+}
+
+.page-selector {
+  grid-area: bottom;
+  justify-self: center;
 }
 
 body {
-    padding: 20px;
-}
-
-label {
-    margin-left: 125px;
+  padding: 20px;
 }
 
 table {
   border-collapse: collapse;
   width: 80%;
-  margin: auto;
-  margin-top: 10px;
 }
 
-td, th {
+td,
+th {
   border: 1px solid #ddd;
   text-align: center;
 }
