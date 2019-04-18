@@ -6,6 +6,7 @@ const SearchBar = ({ searchBarValue, searchByColumn }) => {
     <div>
       Search:{" "}
       <input
+        className="search-input"
         type="text"
         placeholder="input value to search"
         value={searchBarValue}

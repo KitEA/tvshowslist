@@ -6,6 +6,8 @@ import fetchMock from "fetch-mock";
 
 import App from "../../containers/App";
 import ShowsTable from "../../components/ShowsTable";
+import SearchBar from "../../components/SearchBar";
+import PageSelector from "../../components/PageSelector";
 
 describe("App integration tests", () => {
   let store;
@@ -34,19 +36,11 @@ describe("App integration tests", () => {
         tvrage: 18164
       }
     }
-  ]
+  ];
 
   const flushAllPromises = () => new Promise(resolve => setImmediate(resolve));
 
-  beforeEach(() => {
-    store = setupStore();
-  });
-
-  afterEach(() => {
-    fetchMock.restore();
-  });
-
-  it("should fetch and render list of shows", async () => {
+  function setupAsyncTest() {
     fetchMock.getOnce(`https://api.trakt.tv/shows/popular/?page=${1}&limit=3`, {
       body: mockShows,
       headers: {
@@ -60,6 +54,19 @@ describe("App integration tests", () => {
       </Provider>
     );
 
+    return wrapper;
+  }
+
+  beforeEach(() => {
+    store = setupStore();
+  });
+
+  afterEach(() => {
+    fetchMock.restore();
+  });
+
+  it("should fetch and render list of shows", async () => {
+    const wrapper = setupAsyncTest();
     await flushAllPromises();
     wrapper.update();
 
@@ -78,5 +85,19 @@ describe("App integration tests", () => {
         .find("tbody")
         .find("td")
     ).toHaveLength(numberOfTableDataFields);
+  });
+  it("should search for show matching search text", async () => {
+    const wrapper = setupAsyncTest();
+    await flushAllPromises();
+    wrapper.update();
+
+    expect(wrapper.find(ShowsTable).prop("searchResults")).toHaveLength(0);
+    expect(
+      wrapper
+        .find(SearchBar)
+        .find(".search-input")
+        .simulate("change", { target: { value: "Ga" } })
+    );
+    expect(wrapper.find(ShowsTable).prop("searchResults")).toHaveLength(1);
   });
 });

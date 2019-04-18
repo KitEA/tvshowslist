@@ -5,6 +5,7 @@ exports[`SearchBar matches the snapshot 1`] = `
   Search:
    
   <input
+    className="search-input"
     onChange={[Function]}
     placeholder="input value to search"
     type="text"

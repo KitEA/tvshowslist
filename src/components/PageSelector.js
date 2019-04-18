@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 const PageSelector = ({ previousPage, nextPage }) => {
     return (
         <div>
-            <button onClick={previousPage}>Previous Page</button>
-            <button onClick={nextPage}>Next Page</button>
+            <button className="previous-page-button" onClick={previousPage}>Previous Page</button>
+            <button className="next-page-button" onClick={nextPage}>Next Page</button>
         </div>
     )
 }

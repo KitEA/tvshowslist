@@ -24,19 +24,14 @@ const shows = [
   }
 ];
 
-function setup() {
-  const props = {
-    searchResults: undefined
-    //addTodo: jest.fn()
-  };
-
-  const enzymeWrapper = shallow(<ShowsTable {...props} />);
-
-  return {
-    props,
-    enzymeWrapper
-  };
-}
+const searchResults = [
+  {
+    title: "Game of Thrones",
+    year: 2011,
+    id: "tt0944947",
+    poster: "http://img.omdbapi.com/?apikey=6f97ef4f&i=tt0944947"
+  }
+];
 
 describe("ShowsTable component", () => {
   it("matches the snapshot", () => {
@@ -52,5 +47,4 @@ describe("ShowsTable component", () => {
       .toJSON();
     expect(tree).toMatchSnapshot();
   });
-  it("should map through shows if searchResults is 0 length or doesn't exist", () => {});
 });

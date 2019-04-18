@@ -3,11 +3,13 @@
 exports[`PageSelector matches the snapshot 1`] = `
 <div>
   <button
+    className="previous-page-button"
     onClick={[Function]}
   >
     Previous Page
   </button>
   <button
+    className="next-page-button"
     onClick={[Function]}
   >
     Next Page

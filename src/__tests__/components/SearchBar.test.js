@@ -1,5 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import { shallow } from "enzyme";
 import SearchBar from "../../components/SearchBar";
 
 describe("SearchBar", () => {
@@ -9,4 +10,10 @@ describe("SearchBar", () => {
       .toJSON();
     expect(tree).toMatchSnapshot();
   });
+  it("should execute searchByColumn on value change", () => {
+    const searchByColumn = jest.fn();
+    const wrapper = shallow(<SearchBar searchBarValue="" searchByColumn={searchByColumn} />);
+    expect(wrapper.find(".search-input").simulate("change", { target: { value: "Ga" } }));
+    expect(searchByColumn).toHaveBeenCalledTimes(1);
+  })
 });
