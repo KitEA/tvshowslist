@@ -72,7 +72,7 @@ export const fetchShows = () => {
     } else {
       params.append("query", search);
     }
-    let url = new URL(`http://api.trakt.tv/search/show?${params.toString()}`);
+    let url = new URL(`https://api.trakt.tv/search/show?${params.toString()}`);
     return fetch(url, {
       headers: {
         "Content-type": "application/json",
@@ -103,7 +103,7 @@ export const fetchShows = () => {
           const apikey = new URLSearchParams("apikey=6f97ef4f&i=");
           let imgURL = () => {
             let http = new XMLHttpRequest();
-            const URL = `http://img.omdbapi.com/?${apikey.toString()}` + showId;
+            const URL = `https://img.omdbapi.com/?${apikey.toString()}` + showId;
             http.open("GET", URL, false);
             http.send();
 

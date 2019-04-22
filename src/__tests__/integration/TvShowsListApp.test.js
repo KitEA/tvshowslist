@@ -54,7 +54,7 @@ describe("App integration tests", () => {
       params.append("query", search);
     }
 
-    fetchMock.get(`http://api.trakt.tv/search/show?${params.toString()}`, {
+    fetchMock.get(`https://api.trakt.tv/search/show?${params.toString()}`, {
       body: mockShows,
       headers: {
         "content-type": "application/json"

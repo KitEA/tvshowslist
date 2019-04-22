@@ -126,7 +126,7 @@ describe("async actions", () => {
     params.append("limit", 3);
     params.append("query", "");
 
-    fetchMock.getOnce(`http://api.trakt.tv/search/show?${params.toString()}`, {
+    fetchMock.getOnce(`https://api.trakt.tv/search/show?${params.toString()}`, {
       body: mockShows,
       headers: {
         "content-type": "application/json"

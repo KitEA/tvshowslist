@@ -17,7 +17,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -32,7 +34,9 @@
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1",
     "fetch-mock": "^7.3.1",
+    "gh-pages": "^2.0.1",
     "node-fetch": "^2.3.0",
     "redux-mock-store": "^1.5.3"
-  }
+  },
+  "homepage": "http://KitEA.github.io/tvshowslist"
 }
