@@ -6,34 +6,36 @@ import fetchMock from "fetch-mock";
 
 import App from "../../containers/App";
 import ShowsTable from "../../components/ShowsTable";
-import SearchBar from "../../components/SearchBar";
-import PageSelector from "../../components/PageSelector";
 
 describe("App integration tests", () => {
   let store;
   const mockShows = [
     {
-      title: "Game of Thrones",
-      year: 2011,
-      ids: {
-        trakt: 1390,
-        slug: "game-of-thrones",
-        tvdb: 121361,
-        imdb: "tt0944947",
-        tmdb: 1399,
-        tvrage: 24493
+      show: {
+        title: "Game of Thrones",
+        year: 2011,
+        ids: {
+          trakt: 1390,
+          slug: "game-of-thrones",
+          tvdb: 121361,
+          imdb: "tt0944947",
+          tmdb: 1399,
+          tvrage: 24493
+        }
       }
     },
     {
-      title: "Breaking Bad",
-      year: 2008,
-      ids: {
-        trakt: 1388,
-        slug: "breaking-bad",
-        tvdb: 81189,
-        imdb: "tt0903747",
-        tmdb: 1396,
-        tvrage: 18164
+      show: {
+        title: "Breaking Bad",
+        year: 2008,
+        ids: {
+          trakt: 1388,
+          slug: "breaking-bad",
+          tvdb: 81189,
+          imdb: "tt0903747",
+          tmdb: 1396,
+          tvrage: 18164
+        }
       }
     }
   ];
@@ -41,7 +43,18 @@ describe("App integration tests", () => {
   const flushAllPromises = () => new Promise(resolve => setImmediate(resolve));
 
   function setupAsyncTest() {
-    fetchMock.getOnce(`https://api.trakt.tv/shows/popular/?page=${1}&limit=3`, {
+    const page = store.getState().currentPage;
+    const search = store.getState().search;
+    let params = new URLSearchParams();
+    params.append("page", page);
+    params.append("limit", 3);
+    if (typeof search === "undefined") {
+      params.append("query", "");
+    } else {
+      params.append("query", search);
+    }
+
+    fetchMock.get(`http://api.trakt.tv/search/show?${params.toString()}`, {
       body: mockShows,
       headers: {
         "content-type": "application/json"
@@ -85,19 +98,5 @@ describe("App integration tests", () => {
         .find("tbody")
         .find("td")
     ).toHaveLength(numberOfTableDataFields);
-  });
-  it("should search for show matching search text", async () => {
-    const wrapper = setupAsyncTest();
-    await flushAllPromises();
-    wrapper.update();
-
-    expect(wrapper.find(ShowsTable).prop("searchResults")).toHaveLength(0);
-    expect(
-      wrapper
-        .find(SearchBar)
-        .find(".search-input")
-        .simulate("change", { target: { value: "Ga" } })
-    );
-    expect(wrapper.find(ShowsTable).prop("searchResults")).toHaveLength(1);
   });
 });

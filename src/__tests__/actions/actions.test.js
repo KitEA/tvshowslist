@@ -24,27 +24,31 @@ const shows = [
 
 const mockShows = [
   {
-    title: "Game of Thrones",
-    year: 2011,
-    ids: {
-      trakt: 1390,
-      slug: "game-of-thrones",
-      tvdb: 121361,
-      imdb: "tt0944947",
-      tmdb: 1399,
-      tvrage: 24493
+    show: {
+      title: "Game of Thrones",
+      year: 2011,
+      ids: {
+        trakt: 1390,
+        slug: "game-of-thrones",
+        tvdb: 121361,
+        imdb: "tt0944947",
+        tmdb: 1399,
+        tvrage: 24493
+      }
     }
   },
   {
-    title: "Breaking Bad",
-    year: 2008,
-    ids: {
-      trakt: 1388,
-      slug: "breaking-bad",
-      tvdb: 81189,
-      imdb: "tt0903747",
-      tmdb: 1396,
-      tvrage: 18164
+    show: {
+      title: "Breaking Bad",
+      year: 2008,
+      ids: {
+        trakt: 1388,
+        slug: "breaking-bad",
+        tvdb: 81189,
+        imdb: "tt0903747",
+        tmdb: 1396,
+        tvrage: 18164
+      }
     }
   }
 ];
@@ -89,15 +93,6 @@ describe("actions", () => {
     };
     expect(actions.changeSearchValue(input)).toEqual(expectedAction);
   });
-  it("should create an action to search by column", () => {
-    const searchValue = "Game";
-    const expectedAction = {
-      type: types.SEARCH_BY_COLUMN,
-      shows,
-      searchValue
-    };
-    expect(actions.searchByColumn(shows, searchValue)).toEqual(expectedAction);
-  });
   it("should create an action to move to previous page", () => {
     const expectedAction = {
       type: types.PREVIOUS_PAGE
@@ -125,7 +120,13 @@ describe("async actions", () => {
   });
 
   it("fetches shows", async () => {
-    fetchMock.getOnce(`https://api.trakt.tv/shows/popular/?page=${1}&limit=3`, {
+    const page = 1;
+    let params = new URLSearchParams();
+    params.append("page", page);
+    params.append("limit", 3);
+    params.append("query", "");
+
+    fetchMock.getOnce(`http://api.trakt.tv/search/show?${params.toString()}`, {
       body: mockShows,
       headers: {
         "content-type": "application/json"
@@ -135,10 +136,12 @@ describe("async actions", () => {
     const store = mockStore(stateBefore());
 
     return store.dispatch(actions.fetchShows()).then(() => {
-      expect(store.getActions()).toEqual([{
-        type: types.SET_SHOWS,
-        shows
-      }]);
+      expect(store.getActions()).toEqual([
+        {
+          type: types.SET_SHOWS,
+          shows
+        }
+      ]);
     });
   });
 });

@@ -6,8 +6,7 @@ const stateBefore = (currentPage = 1, sort = "desc") => {
     currentPage: currentPage,
     shows: [],
     sort: sort,
-    search: "",
-    searchResults: []
+    search: ""
   };
 };
 
@@ -94,21 +93,6 @@ describe("tvShowsListApp reducer", () => {
         sortOrder
       }).sort
     ).toEqual("desc");
-  });
-  it("should handle SEARCH_BY_COLUMN", () => {
-    expect(
-      tvShowsListApp(stateBefore(), {
-        type: types.SEARCH_BY_COLUMN,
-        shows,
-        searchValue: "Game"
-      }).searchResults
-    ).toEqual([
-      {
-        title: "Game of Thrones",
-        year: 2011,
-        id: "tt0944947"
-      }
-    ]);
   });
   it("should handle CHANGE_SEARCH_VALUE", () => {
     expect(

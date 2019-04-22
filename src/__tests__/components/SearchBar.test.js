@@ -13,7 +13,8 @@ describe("SearchBar", () => {
   it("should execute searchByColumn on value change", () => {
     const searchByColumn = jest.fn();
     const wrapper = shallow(<SearchBar searchBarValue="" searchByColumn={searchByColumn} />);
-    expect(wrapper.find(".search-input").simulate("change", { target: { value: "Ga" } }));
+    expect(wrapper.find(".search-input").simulate("change", { target: { value: "Game" } }));
+    expect(wrapper.find(".search-input").simulate("keydown", { key: "Enter" }));
     expect(searchByColumn).toHaveBeenCalledTimes(1);
   })
 });

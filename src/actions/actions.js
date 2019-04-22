@@ -104,15 +104,15 @@ export const fetchShows = () => {
           let imgURL = () => {
             let http = new XMLHttpRequest();
             const URL = `http://img.omdbapi.com/?${apikey.toString()}` + showId;
-            http.open('GET', URL, false);
+            http.open("GET", URL, false);
             http.send();
 
-            if(http.status !== 404) {
+            if (http.status !== 404) {
               return URL;
             } else {
               return noposter;
             }
-          }
+          };
           pickedShow.poster = imgURL();
           return pickedShow;
         });

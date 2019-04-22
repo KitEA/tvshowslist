@@ -9,6 +9,7 @@ const SearchBar = ({ searchBarValue, searchBarValueChange, searchByColumn }) => 
         className="search-input"
         type="text"
         placeholder="input show's title to search for and press enter"
+        size="35"
         value={searchBarValue}
         onChange={searchBarValueChange}
         onKeyDown={searchByColumn}

@@ -8,8 +8,9 @@ exports[`SearchBar matches the snapshot 1`] = `
    
   <input
     className="search-input"
-    onChange={[Function]}
-    placeholder="input value to search"
+    onKeyDown={[Function]}
+    placeholder="input show's title to search for and press enter"
+    size="35"
     type="text"
     value=""
   />

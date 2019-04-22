@@ -26,18 +26,14 @@ const mapDispatchToProps = dispatch => {
 };
 
 const mergeProps = (stateProps, dispatchProps) => {
-    return {
-        ...stateProps,
-        ...dispatchProps,
-        sortByHeader: headerKey => {
-            dispatchProps.sortByHeader(
-                headerKey,
-                stateProps.shows,
-                stateProps.sort
-            )
-        }
+  return {
+    ...stateProps,
+    ...dispatchProps,
+    sortByHeader: headerKey => {
+      dispatchProps.sortByHeader(headerKey, stateProps.shows, stateProps.sort);
     }
-}
+  };
+};
 
 export default connect(
   mapStateToProps,
