@@ -27,7 +27,7 @@ const currentPage = (state = 1, action) => {
 const shows = (state = [], action) => {
   switch (action.type) {
     case SET_SHOWS:
-      return Object.assign([], state, action.shows);
+      return action.shows;
     case SORT_SHOWS:
       const sortedShows = orderBy(
         action.shows,
