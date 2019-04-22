@@ -1,16 +1,17 @@
 import React from "react";
 import PropTypes from 'prop-types';
 
-const SearchBar = ({ searchBarValue, searchByColumn }) => {
+const SearchBar = ({ searchBarValue, searchBarValueChange, searchByColumn }) => {
   return (
     <div className="search-bar">
       Search:{" "}
       <input
         className="search-input"
         type="text"
-        placeholder="input value to search"
+        placeholder="input show's title to search for and press enter"
         value={searchBarValue}
-        onChange={searchByColumn}
+        onChange={searchBarValueChange}
+        onKeyDown={searchByColumn}
       />
     </div>
   );

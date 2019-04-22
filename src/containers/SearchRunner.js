@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import SearchBar from "../components/SearchBar";
-import { changeSearchValue, searchByColumn } from "../actions/actions";
+import { changeSearchValue, fetchShows } from "../actions/actions";
 
 const mapStateToProps = state => {
   const { search, shows } = state;
@@ -12,26 +12,19 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    searchByColumn: (event, shows) => {
+    searchBarValueChange: event => {
       const currentSearchBarValue = event.target.value;
       dispatch(changeSearchValue(currentSearchBarValue));
-      dispatch(searchByColumn(shows, currentSearchBarValue));
-    }
-  };
-};
-
-const mergeProps = (stateProps, dispatchProps) => {
-  return {
-    ...stateProps,
-    ...dispatchProps,
+    },
     searchByColumn: event => {
-      dispatchProps.searchByColumn(event, stateProps.shows);
+      if (event.key === "Enter") {
+        dispatch(fetchShows());
+      }
     }
   };
 };
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
-  mergeProps
+  mapDispatchToProps
 )(SearchBar);

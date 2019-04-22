@@ -1,10 +1,9 @@
 import React from "react";
 import ShowsTableHeader from "./ShowsTableHeader";
 import ShowTableRow from "../components/ShowTableRow";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-const ShowsTable = ({ sortByHeader, shows, searchResults, currentPage }) => {
-  
+const ShowsTable = ({ sortByHeader, shows, currentPage }) => {
   const itemsPerPage = 3;
   const numberShouldNotStartFromZero = 1;
   const firstPageShouldNotMultiplicate = 1;
@@ -12,7 +11,11 @@ const ShowsTable = ({ sortByHeader, shows, searchResults, currentPage }) => {
   const showTabRowComponent = (show, pageCount) => {
     return (
       <ShowTableRow
-        number={pageCount + numberShouldNotStartFromZero + (currentPage - firstPageShouldNotMultiplicate) * itemsPerPage}
+        number={
+          pageCount +
+          numberShouldNotStartFromZero +
+          (currentPage - firstPageShouldNotMultiplicate) * itemsPerPage
+        }
         title={show.title}
         year={show.year}
         poster={show.poster}
@@ -22,15 +25,7 @@ const ShowsTable = ({ sortByHeader, shows, searchResults, currentPage }) => {
   };
 
   const showTabRowGenerator = () => {
-    if (searchResults && searchResults.length === 0) {
-      return shows.map((show, pageCount) => (
-        showTabRowComponent(show, pageCount)
-      ));
-    } else {
-      return searchResults.map((show, pageCount) => (
-        showTabRowComponent(show, pageCount)
-      ));
-    }
+    return shows.map((show, pageCount) => showTabRowComponent(show, pageCount));
   };
 
   return (
@@ -46,8 +41,7 @@ const ShowsTable = ({ sortByHeader, shows, searchResults, currentPage }) => {
 ShowsTable.propTypes = {
   sortByHeader: PropTypes.func.isRequired,
   shows: PropTypes.array.isRequired,
-  searchResults: PropTypes.array.isRequired,
   currentPage: PropTypes.number.isRequired
-}
+};
 
 export default ShowsTable;
