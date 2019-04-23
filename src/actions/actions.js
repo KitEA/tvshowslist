@@ -4,7 +4,8 @@ import {
   CHANGE_SEARCH_VALUE,
   PREVIOUS_PAGE,
   NEXT_PAGE,
-  SET_SHOWS
+  SET_SHOWS,
+  START_END_SEARCH
 } from "./ActionTypes";
 import noposter from "../img/noposter.jpg";
 
@@ -16,6 +17,12 @@ export const changeSearchValue = input => {
     input
   };
 };
+
+export const startEndSearch = () => {
+  return {
+    type: START_END_SEARCH
+  }
+}
 
 // sort actions creators
 
@@ -67,10 +74,10 @@ export const fetchShows = () => {
     let params = new URLSearchParams();
     params.append("page", page);
     params.append("limit", 3);
-    if (typeof search === "undefined") {
-      params.append("query", "");
-    } else {
+    if (getState().searchStatus === true) {
       params.append("query", search);
+    } else {
+      params.append("query", "");
     }
     let url = new URL(`https://api.trakt.tv/search/show?${params.toString()}`);
     return fetch(url, {

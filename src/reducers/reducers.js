@@ -4,7 +4,8 @@ import {
   NEXT_PAGE,
   SORT_SHOWS,
   SET_SORT_ORDER,
-  CHANGE_SEARCH_VALUE
+  CHANGE_SEARCH_VALUE,
+  START_END_SEARCH
 } from "../actions/ActionTypes";
 import { combineReducers } from "redux";
 import { orderBy } from "lodash";
@@ -58,11 +59,21 @@ const search = (state = "", action) => {
   }
 };
 
+const searchStatus = (state = false, action) => {
+  switch (action.type) {
+    case START_END_SEARCH:
+      return !state;
+    default:
+      return state;
+  }
+};
+
 const tvShowsListApp = combineReducers({
   currentPage,
   shows,
   sort,
-  search
+  search,
+  searchStatus
 });
 
 export default tvShowsListApp;

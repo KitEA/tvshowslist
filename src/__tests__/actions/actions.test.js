@@ -12,13 +12,13 @@ const shows = [
     title: "Game of Thrones",
     year: 2011,
     id: "tt0944947",
-    poster: "http://img.omdbapi.com/?apikey=6f97ef4f&i=tt0944947"
+    poster: "https://img.omdbapi.com/?apikey=6f97ef4f&i=tt0944947"
   },
   {
     title: "Breaking Bad",
     year: 2008,
     id: "tt0903747",
-    poster: "http://img.omdbapi.com/?apikey=6f97ef4f&i=tt0903747"
+    poster: "https://img.omdbapi.com/?apikey=6f97ef4f&i=tt0903747"
   }
 ];
 

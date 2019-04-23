@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import SearchBar from "../components/SearchBar";
-import { changeSearchValue, fetchShows } from "../actions/actions";
+import { changeSearchValue, fetchShows, startEndSearch } from "../actions/actions";
 
 const mapStateToProps = state => {
   const { search, shows } = state;
@@ -18,6 +18,7 @@ const mapDispatchToProps = dispatch => {
     },
     searchByColumn: event => {
       if (event.key === "Enter") {
+        dispatch(startEndSearch());
         dispatch(fetchShows());
       }
     }

@@ -6,7 +6,8 @@ const stateBefore = (currentPage = 1, sort = "desc") => {
     currentPage: currentPage,
     shows: [],
     sort: sort,
-    search: ""
+    search: "",
+    searchStatus: false
   };
 };
 
