@@ -28,29 +28,35 @@ const currentPage = (state = 1, action) => {
   }
 };
 
-const shows = (state = {
-  isFetching: false,
-  items: []
-}, action) => {
+const shows = (
+  state = {
+    isFetching: false,
+    items: []
+  },
+  action
+) => {
   switch (action.type) {
     case REQUEST_SHOWS:
       return {
         ...state,
         isFetching: true
-      }
+      };
     case SET_SHOWS:
       return {
-        ...state, 
+        ...state,
         isFetching: false,
         items: action.shows
-      }
+      };
     case SORT_SHOWS:
       const sortedShows = orderBy(
         action.shows,
         action.sortKey,
         action.sortOrder
       );
-      return sortedShows;
+      return {
+        ...state,
+        items: sortedShows
+      };
     default:
       return state;
   }
