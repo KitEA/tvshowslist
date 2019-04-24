@@ -6,7 +6,8 @@ import {
   SET_SORT_ORDER,
   CHANGE_SEARCH_VALUE,
   START_END_SEARCH,
-  RESET_PAGE
+  RESET_PAGE,
+  REQUEST_SHOWS
 } from "../actions/ActionTypes";
 import { combineReducers } from "redux";
 import { orderBy } from "lodash";
@@ -28,10 +29,22 @@ const currentPage = (state = 1, action) => {
   }
 };
 
-const shows = (state = [], action) => {
+const shows = (state = {
+  isFetching: false,
+  items: []
+}, action) => {
   switch (action.type) {
+    case REQUEST_SHOWS:
+      return {
+        ...state,
+        isFetching: true
+      }
     case SET_SHOWS:
-      return action.shows;
+      return {
+        ...state, 
+        isFetching: false,
+        items: action.shows
+      } //action.shows;
     case SORT_SHOWS:
       const sortedShows = orderBy(
         action.shows,

@@ -12,4 +12,5 @@ export const PREVIOUS_PAGE = 'PREVIOUS_PAGE';
 export const NEXT_PAGE = 'NEXT_PAGE';
 
 // asyncAction
+export const REQUEST_SHOWS = "REQUEST_SHOWS";
 export const SET_SHOWS = "SET_SHOWS";

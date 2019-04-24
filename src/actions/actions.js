@@ -6,7 +6,8 @@ import {
   NEXT_PAGE,
   SET_SHOWS,
   START_END_SEARCH,
-  RESET_PAGE
+  RESET_PAGE,
+  REQUEST_SHOWS
 } from "./ActionTypes";
 import noposter from "../img/noposter.jpg";
 
@@ -65,6 +66,12 @@ export const nextPage = () => {
 
 // sync-async actions creators
 
+export const requestShows = () => {
+  return {
+    type: REQUEST_SHOWS
+  }
+}
+
 export const setShows = shows => {
   return {
     type: SET_SHOWS,
@@ -87,6 +94,7 @@ export const fetchShows = () => {
       params.append("query", "");
     }
     let url = new URL(`https://api.trakt.tv/search/show?${params.toString()}`);
+    dispatch(requestShows());
     return fetch(url, {
       headers: {
         "Content-type": "application/json",

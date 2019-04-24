@@ -5,7 +5,8 @@ import ShowsTable from "../components/ShowsTable";
 const mapStateToProps = state => {
   const { shows, searchResults, currentPage, sort } = state;
   return {
-    shows: shows,
+    shows: shows.items,
+    isFetching: shows.isFetching,
     searchResults: searchResults,
     currentPage: currentPage,
     sort: sort
