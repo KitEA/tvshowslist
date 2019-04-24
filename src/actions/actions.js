@@ -5,7 +5,8 @@ import {
   PREVIOUS_PAGE,
   NEXT_PAGE,
   SET_SHOWS,
-  START_END_SEARCH
+  START_END_SEARCH,
+  RESET_PAGE
 } from "./ActionTypes";
 import noposter from "../img/noposter.jpg";
 
@@ -43,6 +44,12 @@ export const setSortOrder = sortOrder => {
 };
 
 // pagination actions creators
+
+export const resetPage = () => {
+  return {
+    type: RESET_PAGE
+  }
+}
 
 export const previousPage = () => {
   return {

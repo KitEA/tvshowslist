@@ -2,7 +2,8 @@ import { connect } from "react-redux";
 import {
   changeSearchValue,
   fetchShows,
-  startEndSearch
+  startEndSearch,
+  resetPage
 } from "../actions/actions";
 import Home from "../components/Home";
 
@@ -20,6 +21,7 @@ const mapDispatchToProps = dispatch => {
       if (searchStatus === true) {
         dispatch(startEndSearch());
       }
+      dispatch(resetPage());
       dispatch(fetchShows());
     }
   };

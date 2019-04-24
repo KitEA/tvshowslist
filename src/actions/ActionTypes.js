@@ -7,6 +7,7 @@ export const CHANGE_SEARCH_VALUE = "CHANGE_SEARCH_VALUE";
 export const START_END_SEARCH = "START_END_SEARCH";
 
 // pageActions
+export const RESET_PAGE = 'RESET_PAGE';
 export const PREVIOUS_PAGE = 'PREVIOUS_PAGE';
 export const NEXT_PAGE = 'NEXT_PAGE';
 

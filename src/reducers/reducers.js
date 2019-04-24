@@ -5,7 +5,8 @@ import {
   SORT_SHOWS,
   SET_SORT_ORDER,
   CHANGE_SEARCH_VALUE,
-  START_END_SEARCH
+  START_END_SEARCH,
+  RESET_PAGE
 } from "../actions/ActionTypes";
 import { combineReducers } from "redux";
 import { orderBy } from "lodash";
@@ -20,6 +21,8 @@ const currentPage = (state = 1, action) => {
       }
     case NEXT_PAGE:
       return state + 1;
+    case RESET_PAGE:
+      return 1;
     default:
       return state;
   }
