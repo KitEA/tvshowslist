@@ -4,6 +4,7 @@ import { fetchShows } from "../actions/actions";
 import PageLoader from "./PageLoader";
 import TableRenderer from "./TableRenderer";
 import SearchRunner from "./SearchRunner";
+import RestoreToInitialState from "./RestoreToInitialState";
 
 class App extends Component {
 
@@ -15,6 +16,7 @@ class App extends Component {
   render() {
     return (
       <div className="container">
+        <RestoreToInitialState />
         <SearchRunner />
         <TableRenderer />
         <PageLoader />
