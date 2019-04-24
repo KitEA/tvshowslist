@@ -5,7 +5,6 @@ import {
   SORT_SHOWS,
   SET_SORT_ORDER,
   CHANGE_SEARCH_VALUE,
-  START_END_SEARCH,
   RESET_PAGE,
   REQUEST_SHOWS
 } from "../actions/ActionTypes";
@@ -44,7 +43,7 @@ const shows = (state = {
         ...state, 
         isFetching: false,
         items: action.shows
-      } //action.shows;
+      }
     case SORT_SHOWS:
       const sortedShows = orderBy(
         action.shows,
@@ -75,21 +74,11 @@ const search = (state = "", action) => {
   }
 };
 
-const searchStatus = (state = false, action) => {
-  switch (action.type) {
-    case START_END_SEARCH:
-      return !state;
-    default:
-      return state;
-  }
-};
-
 const tvShowsListApp = combineReducers({
   currentPage,
   shows,
   sort,
-  search,
-  searchStatus
+  search
 });
 
 export default tvShowsListApp;

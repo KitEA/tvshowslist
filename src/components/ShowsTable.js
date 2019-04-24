@@ -29,7 +29,6 @@ const ShowsTable = ({ sortByHeader, shows, isFetching, currentPage }) => {
   };
 
   const loadingOrData = () => {
-    //console.log(isFetching);
     if (shows.length === 0 || isFetching) {
       return <div className="loader" />;
     } else {

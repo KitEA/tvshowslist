@@ -3,7 +3,6 @@ import SearchBar from "../components/SearchBar";
 import {
   changeSearchValue,
   fetchShows,
-  startEndSearch,
   resetPage
 } from "../actions/actions";
 
@@ -24,7 +23,6 @@ const mapDispatchToProps = dispatch => {
     searchByColumn: event => {
       if (event.key === "Enter") {
         dispatch(resetPage());
-        dispatch(startEndSearch());
         dispatch(fetchShows());
       }
     }

@@ -5,7 +5,6 @@ import {
   PREVIOUS_PAGE,
   NEXT_PAGE,
   SET_SHOWS,
-  START_END_SEARCH,
   RESET_PAGE,
   REQUEST_SHOWS
 } from "./ActionTypes";
@@ -19,12 +18,6 @@ export const changeSearchValue = input => {
     input
   };
 };
-
-export const startEndSearch = () => {
-  return {
-    type: START_END_SEARCH
-  }
-}
 
 // sort actions creators
 
@@ -88,11 +81,7 @@ export const fetchShows = () => {
     let params = new URLSearchParams();
     params.append("page", page);
     params.append("limit", 3);
-    if (getState().searchStatus === true) {
-      params.append("query", search);
-    } else {
-      params.append("query", "");
-    }
+    params.append("query", search);
     let url = new URL(`https://api.trakt.tv/search/show?${params.toString()}`);
     dispatch(requestShows());
     return fetch(url, {

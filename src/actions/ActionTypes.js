@@ -4,7 +4,6 @@ export const SET_SORT_ORDER = "SET_SORT_ORDER";
 
 // searchActions
 export const CHANGE_SEARCH_VALUE = "CHANGE_SEARCH_VALUE";
-export const START_END_SEARCH = "START_END_SEARCH";
 
 // pageActions
 export const RESET_PAGE = 'RESET_PAGE';
