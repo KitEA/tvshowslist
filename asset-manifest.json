@@ -1,13 +1,13 @@
 {
-  "main.css": "/tvshowslist/static/css/main.f8cfe59c.chunk.css",
-  "main.js": "/tvshowslist/static/js/main.3f49b844.chunk.js",
-  "main.js.map": "/tvshowslist/static/js/main.3f49b844.chunk.js.map",
+  "main.css": "/tvshowslist/static/css/main.35bf244c.chunk.css",
+  "main.js": "/tvshowslist/static/js/main.20c5b2f8.chunk.js",
+  "main.js.map": "/tvshowslist/static/js/main.20c5b2f8.chunk.js.map",
   "runtime~main.js": "/tvshowslist/static/js/runtime~main.9f5b317d.js",
   "runtime~main.js.map": "/tvshowslist/static/js/runtime~main.9f5b317d.js.map",
   "static/js/2.322294fd.chunk.js": "/tvshowslist/static/js/2.322294fd.chunk.js",
   "static/js/2.322294fd.chunk.js.map": "/tvshowslist/static/js/2.322294fd.chunk.js.map",
   "index.html": "/tvshowslist/index.html",
-  "precache-manifest.3c36426204cbb26dd6b8bbcfdfde005e.js": "/tvshowslist/precache-manifest.3c36426204cbb26dd6b8bbcfdfde005e.js",
+  "precache-manifest.ff06085df0476893d1633f572de9e33b.js": "/tvshowslist/precache-manifest.ff06085df0476893d1633f572de9e33b.js",
   "service-worker.js": "/tvshowslist/service-worker.js",
-  "static/css/main.f8cfe59c.chunk.css.map": "/tvshowslist/static/css/main.f8cfe59c.chunk.css.map"
+  "static/css/main.35bf244c.chunk.css.map": "/tvshowslist/static/css/main.35bf244c.chunk.css.map"
 }

@@ -4,19 +4,19 @@ self.__precacheManifest = [
     "url": "/tvshowslist/static/js/runtime~main.9f5b317d.js"
   },
   {
-    "revision": "a81b104392e4b501709c",
-    "url": "/tvshowslist/static/js/main.3f49b844.chunk.js"
+    "revision": "7190d992c1b4bc67eb93",
+    "url": "/tvshowslist/static/js/main.20c5b2f8.chunk.js"
   },
   {
     "revision": "1eafe79fa7e54fca88fe",
     "url": "/tvshowslist/static/js/2.322294fd.chunk.js"
   },
   {
-    "revision": "a81b104392e4b501709c",
-    "url": "/tvshowslist/static/css/main.f8cfe59c.chunk.css"
+    "revision": "7190d992c1b4bc67eb93",
+    "url": "/tvshowslist/static/css/main.35bf244c.chunk.css"
   },
   {
-    "revision": "55294f2c528cb59e8d6ba5f51031ec87",
+    "revision": "9841b6c95d4b7b40091da3ecc70506f3",
     "url": "/tvshowslist/index.html"
   }
 ];
