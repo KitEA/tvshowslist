@@ -6,16 +6,16 @@ import {
   NEXT_PAGE,
   SET_SHOWS,
   RESET_PAGE,
-  REQUEST_SHOWS
-} from "./ActionTypes";
-import noposter from "../img/noposter.jpg";
+  REQUEST_SHOWS,
+} from './ActionTypes';
+import noposter from '../img/noposter.jpg';
 
 // search actions creators
 
-export const changeSearchValue = input => {
+export const changeSearchValue = (input) => {
   return {
     type: CHANGE_SEARCH_VALUE,
-    input
+    input,
   };
 };
 
@@ -26,14 +26,14 @@ export const sortShows = (shows, sortKey, sortOrder) => {
     type: SORT_SHOWS,
     shows,
     sortKey,
-    sortOrder
+    sortOrder,
   };
 };
 
-export const setSortOrder = sortOrder => {
+export const setSortOrder = (sortOrder) => {
   return {
     type: SET_SORT_ORDER,
-    sortOrder
+    sortOrder,
   };
 };
 
@@ -41,19 +41,19 @@ export const setSortOrder = sortOrder => {
 
 export const resetPage = () => {
   return {
-    type: RESET_PAGE
-  }
-}
+    type: RESET_PAGE,
+  };
+};
 
 export const previousPage = () => {
   return {
-    type: PREVIOUS_PAGE
+    type: PREVIOUS_PAGE,
   };
 };
 
 export const nextPage = () => {
   return {
-    type: NEXT_PAGE
+    type: NEXT_PAGE,
   };
 };
 
@@ -61,14 +61,14 @@ export const nextPage = () => {
 
 export const requestShows = () => {
   return {
-    type: REQUEST_SHOWS
-  }
-}
+    type: REQUEST_SHOWS,
+  };
+};
 
-export const setShows = shows => {
+export const setShows = (shows) => {
   return {
     type: SET_SHOWS,
-    shows
+    shows,
   };
 };
 
@@ -76,46 +76,49 @@ export const setShows = shows => {
 
 export const fetchShows = () => {
   return (dispatch, getState) => {
+    const proxi = 'https://cors-anywhere.herokuapp.com/';
+    const api = 'https://api.trakt.tv/search/show';
+    const params = new URLSearchParams();
     const page = getState().currentPage;
     const search = getState().search;
-    let params = new URLSearchParams();
-    params.append("page", page);
-    params.append("limit", 3);
-    params.append("query", search);
-    let url = new URL(`https://api.trakt.tv/search/show?${params.toString()}`);
+    params.append('page', page);
+    params.append('limit', 3);
+    params.append('query', search);
+    const url = new URL(`${proxi}${api}?${params.toString()}`);
     dispatch(requestShows());
     return fetch(url, {
       headers: {
-        "Content-type": "application/json",
-        "trakt-api-key":
-          "d56205660f8aec540a91eec775156734f9b6c192890babc46c0efa9d95d297fc",
-        "trakt-api-version": "2"
-      }
+        'Content-type': 'application/json',
+        'trakt-api-key':
+          'd56205660f8aec540a91eec775156734f9b6c192890babc46c0efa9d95d297fc',
+        'trakt-api-version': '2',
+      },
     })
       .then(
-        response => response.json(),
-        error => console.log("An error occurred.", error)
+        (response) => response.json(),
+        (error) => console.log('An error occurred.', error)
       )
-      .then(shows => {
-        const showsWithPosters = shows.map(show => {
+      .then((shows) => {
+        const showsWithPosters = shows.map((show) => {
           let unwrapAppSpecificFields = ({
             show: {
               ids: { imdb },
               title,
-              year
-            }
+              year,
+            },
           }) => ({
             id: imdb,
             title,
-            year
+            year,
           });
           let pickedShow = unwrapAppSpecificFields(show);
           let showId = pickedShow.id;
-          const apikey = new URLSearchParams("apikey=6f97ef4f&i=");
+          const apikey = new URLSearchParams('apikey=6f97ef4f&i=');
           let imgURL = () => {
             let http = new XMLHttpRequest();
-            const URL = `https://img.omdbapi.com/?${apikey.toString()}` + showId;
-            http.open("GET", URL, false);
+            const URL =
+              `https://img.omdbapi.com/?${apikey.toString()}` + showId;
+            http.open('GET', URL, false);
             http.send();
 
             if (http.status !== 404) {
